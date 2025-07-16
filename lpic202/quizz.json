@@ -1,0 +1,25 @@
+{
+  "title": "LPIC-202 Exam Training",
+  "subtitle": "LPIC-202 Practice Exam",
+  "csvUrl": "quizz.csv",
+  "endText": "Enjoyed this free exam training? <a href='https://www.udemy.com/course/lpic202-exams/'>Click here for more LPIC-201 practice exams</a>.",
+  "stats": [
+    {
+      "label": "Questions",
+      "value": 60,
+      "icon": "fa-list-ol"
+    },
+    {
+      "label": "Duration",
+      "value": "90m",
+      "icon": "fa-clock"
+    },
+    {
+      "label": "Passing Score",
+      "value": "500/800",
+      "icon": "fa-check-circle"
+    }
+  ],
+  "passingScore": 62.5,
+  "footerText": "LPIC-202 Certification Training | <a href='https://www.udemy.com/course/lpic202-exams/'>More Training Exams</a>"
+}

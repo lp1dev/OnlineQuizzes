@@ -1,9 +1,27 @@
 [
     {
-        "title": "CEHv13 Practice Exam",
+        "title": "C|EHv13 Practice Exam",
         "description": "Comprehensive Certified Ethical Hacker practice test with detailed explanations.",
         "buttonText": "Start Free Practice Exam",
         "link": "/cehv13"
+    },
+    {
+        "title": "LPIC-201 Practice Exam",
+        "description": "Comprehensive LPIC-201 practice test with detailed explanations.",
+        "buttonText": "Start Free Practice Exam",
+        "link": "/lpic201"
+    },
+    {
+        "title": "LPIC-202 Practice Exam",
+        "description": "Comprehensive LPIC-202 practice test with detailed explanations.",
+        "buttonText": "Start Free Practice Exam",
+        "link": "/lpic202"
+    },
+    {
+        "title": "C|HFI Practice Exam",
+        "description": "Comprehensive CHFIv10 practice test with detailed explanations.",
+        "buttonText": "Start Free Practice Exam",
+        "link": "/chfiv10"
     }
 
 ]
