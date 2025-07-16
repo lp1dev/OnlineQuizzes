@@ -1,0 +1,25 @@
+{
+  "title": " C|ND 312-38 Exam Training",
+  "subtitle": "Practice Exam",
+  "csvUrl": "quizz.csv",
+  "endText": "Enjoyed this free exam training? <a href='https://www.udemy.com/course/100-cnd-certified-network-defender-5-practice-exams/'>Click here for more complete realistic exams</a>.",
+  "stats": [
+    {
+      "label": "Questions",
+      "value": 100,
+      "icon": "fa-list-ol"
+    },
+    {
+      "label": "Duration",
+      "value": "4h",
+      "icon": "fa-clock"
+    },
+    {
+      "label": "Passing Score",
+      "value": "70%",
+      "icon": "fa-check-circle"
+    }
+  ],
+  "passingScore": 70,
+  "footerText": "Certification Exam Training | <a href='https://www.udemy.com/course/100-cnd-certified-network-defender-5-practice-exams'>Click here to unlock more exams</a>"
+}

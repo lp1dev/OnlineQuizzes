@@ -22,6 +22,12 @@
         "description": "Comprehensive CHFIv10 practice test with detailed explanations.",
         "buttonText": "Start Free Practice Exam",
         "link": "/chfiv10"
+    },
+    {
+        "title": "C|ND Practice Exam",
+        "description": "Comprehensive C|ND practice test with detailed explanations.",
+        "buttonText": "Start Free Practice Exam",
+        "link": "/cnd"
     }
 
 ]
