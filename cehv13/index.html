@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Information to modify when creating a new exam -->
+    <title>CEHv13 Practice Exam - Free Certified Ethical Hacker Test Prep | Training</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="description"
+        content="Free CEHv13 practice exam with detailed explanations. Prepare for your Certified Ethical Hacker v13 certification with realistic questions and performance analytics.">
+    <meta name="keywords"
+        content="CEHv13, Certified Ethical Hacker v13, CEH exam prep, ethical hacking practice test, cybersecurity certification, certification, penetration testing exam, CEH v13 questions">
+    <meta name="author" content="Certified Training">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="CEHv13 Practice Test - Free Certified Ethical Hacker Exam Prep">
+    <meta property="og:description"
+        content="Prepare for the CEHv13 exam with our free practice test. Realistic ethical hacking questions with detailed explanations.">
+    <meta property="og:image" content="https://cert.hack.courses/">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://cert.hack.courses/cehv13">
+    <meta property="twitter:title" content="Free CEHv13 Practice Exam - Certified Ethical Hacker v13 Test">
+    <meta property="twitter:description"
+        content="Master CEHv13 exam concepts with free practice tests. Detailed answer explanations and domain-wise performance tracking.">
+    <meta property="twitter:image" content="https://www.example.com/twitter-image.jpg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PracticeTest",
+  "name": "CEHv13 Certified Ethical Hacker Practice Exam",
+  "description": "Comprehensive practice test for the Certified Ethical Hacker v13 certification exam",
+  "educationalLevel": "Intermediate",
+  "assesses": "Ethical hacking skills and cybersecurity knowledge",
+  "numberOfQuestions": 125,
+  "learningResourceType": "Practice Test",
+  "teaches": [
+    "Footprinting and reconnaissance",
+    "Vulnerability analysis",
+    "System hacking",
+    "Network defense",
+    "Cloud security",
+    "IoT hacking"
+  ]
+}
+</script>
+    <!-- End of information to modify when creating a new exam -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text: #e6f1ff;
+            --text-secondary: #8892b0;
+            --correct: #4ade80;
+            --incorrect: #f87171;
+            --card-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+            --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary) 0%, #0a1429 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--accent), #b3ffe9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .stat-box {
+            background: rgba(10, 25, 47, 0.6);
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 140px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section {
+            background: var(--secondary);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .error {
+            background: rgba(248, 113, 113, 0.1);
+            color: var(--incorrect);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--incorrect);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+
+        .spinner {
+            border: 4px solid rgba(136, 146, 176, 0.2);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            align-items: center;
+        }
+
+        .domain {
+            background: rgba(100, 255, 218, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .question-container {
+            margin-bottom: 25px;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            padding: 16px 20px;
+            background: rgba(10, 25, 47, 0.4);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid rgba(136, 146, 176, 0.1);
+        }
+
+        .option:hover {
+            background: rgba(17, 34, 64, 0.8);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+
+        .option.selected {
+            background: rgba(100, 255, 218, 0.08);
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1);
+        }
+
+        .option input {
+            margin-right: 15px;
+            margin-top: 5px;
+            accent-color: var(--accent);
+        }
+
+        .option label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 1.05rem;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--accent) 0%, #00e6cc 100%);
+            color: var(--primary);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(100, 255, 218, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(100, 255, 218, 0.4);
+        }
+
+        .btn:disabled {
+            background: #495670;
+            color: #a8b2d1;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        .explanation {
+            padding-top: 25px;
+            border-top: 1px solid rgba(136, 146, 176, 0.2);
+        }
+
+        .explanation.incorrect {
+            color: var(--incorrect);
+            padding-top: 25px;
+            border-top: 1px solid rgba(136, 146, 176, 0.2);
+        }
+
+        .explanation.incorrect h3 {
+            color: var(--incorrect) !important;
+        }
+
+        .explanation.incorrect .explanation-text {
+            border-left: 3px solid var(--incorrect) !important;
+        }
+
+        .explanation h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .explanation-text {
+            padding: 18px;
+            background: rgba(10, 25, 47, 0.4);
+            border-radius: 10px;
+            border-left: 3px solid var(--accent);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .result-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .score {
+            font-size: 3rem;
+            margin: 20px 0;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent), #b3ffe9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .passing-info {
+            background: rgba(10, 25, 47, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 25px auto;
+            max-width: 500px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .passing-score {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(100, 255, 218, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background: rgba(10, 25, 47, 0.8);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .actions {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stat-box {
+                width: 100%;
+                max-width: 260px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cyber-grid"></div>
+
+    <div class="container">
+        <header>
+            <h1 id="exam-title">Free Certification Exam Quizz</h1>
+            <p class="subtitle" id="exam-subtitle">Loading exam configuration...</p>
+
+            <div class="stats-container" id="exam-stats">
+                <!-- Stats will be populated from JSON -->
+            </div>
+        </header>
+
+        <div class="section" id="setup-section">
+            <div class="error" id="error-message"></div>
+            <div class="loading" id="loading-indicator">
+                <div class="spinner"></div>
+                <p>Loading exam configuration...</p>
+            </div>
+        </div>
+
+        <div class="section quiz-area" id="quiz-section" style="display:none;">
+            <div class="status-bar">
+                <div id="progress-text">Question: 1/10</div>
+                <div class="domain" id="domain-display">Loading...</div>
+            </div>
+
+            <div class="question-container">
+                <div class="question-text" id="question-text">Loading question...</div>
+                <div class="options-container" id="options-container">
+                    <!-- Options will be populated dynamically -->
+                </div>
+            </div>
+
+            <div class="explanation" id="explanation-section" style="display: none;">
+                <h3><i class="fas fa-lightbulb"></i> Explanation</h3>
+                <div class="explanation-text" id="overall-explanation">Explanation will appear here...</div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-outline" id="prev-btn" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button class="btn" id="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Submit Answer
+                </button>
+                <button class="btn" id="next-btn" style="display: none;">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="section quiz-area" id="results-section" style="display: none;">
+            <div class="result-container">
+                <h2><i class="fas fa-trophy"></i> Quiz Completed</h2>
+                <div class="score">Your Score: <span id="final-score">0</span>/<span id="total-questions">0</span></div>
+
+                <div class="passing-info">
+                    <div id="pass-status">
+                        Loading results...
+                    </div>
+                </div>
+
+                <button class="btn" id="restart-btn">
+                    <i class="fas fa-redo"></i> Restart Quiz
+                </button>
+            </div>
+        </div>
+
+        <div id="footer" class="footer">
+            Certified Training
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const setupSection = document.getElementById('setup-section');
+        const quizSection = document.getElementById('quiz-section');
+        const resultsSection = document.getElementById('results-section');
+        const examTitle = document.getElementById('exam-title');
+        const examSubtitle = document.getElementById('exam-subtitle');
+        const examStats = document.getElementById('exam-stats');
+        const errorMessage = document.getElementById('error-message');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const explanationSection = document.getElementById('explanation-section');
+        const overallExplanation = document.getElementById('overall-explanation');
+        const prevBtn = document.getElementById('prev-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const progressText = document.getElementById('progress-text');
+        const domainDisplay = document.getElementById('domain-display');
+        const finalScore = document.getElementById('final-score');
+        const totalQuestions = document.getElementById('total-questions');
+        const passStatus = document.getElementById('pass-status');
+        const restartBtn = document.getElementById('restart-btn');
+        const footer = document.getElementById('footer');
+
+        // Quiz state
+        let quizConfig = {};
+        let quizState = {
+            questions: [],
+            currentQuestionIndex: 0,
+            score: 0,
+            userAnswers: [],
+            showExplanation: false
+        };
+
+        // Show loading indicator
+        loadingIndicator.style.display = 'block';
+
+        // Load quiz configuration from JSON
+        function loadQuizConfig() {
+            fetch('quizz.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(config => {
+                    quizConfig = config;
+                    initQuizConfig();
+                    loadQuizFromCsv();
+                })
+                .catch(error => {
+                    loadingIndicator.style.display = 'none';
+                    showError(`Failed to load quiz configuration: ${error.message}`);
+                    console.error('Error loading quiz config:', error);
+                });
+        }
+
+        // Initialize quiz configuration from JSON
+        function initQuizConfig() {
+            // Set title and subtitle
+            examTitle.textContent = quizConfig.title;
+            examSubtitle.textContent = quizConfig.subtitle;
+
+            // Create stats boxes
+            examStats.innerHTML = '';
+            quizConfig.stats.forEach(stat => {
+                const statBox = document.createElement('div');
+                statBox.className = 'stat-box';
+                statBox.innerHTML = `
+                    <div class="stat-value">${stat.value}</div>
+                    <div class="stat-label">
+                        <i class="fas ${stat.icon}"></i> ${stat.label}
+                    </div>
+                `;
+                examStats.appendChild(statBox);
+            });
+
+            footer.innerHTML = quizConfig.footerText;
+        }
+
+        // Load quiz from CSV URL
+        function loadQuizFromCsv() {
+            // Show loading indicator
+            loadingIndicator.querySelector('p').textContent = 'Loading questions...';
+
+            fetch(quizConfig.csvUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(csvText => {
+                    parseCsv(csvText);
+                    loadingIndicator.style.display = 'none';
+                    setupSection.style.display = 'none';
+                    quizSection.style.display = 'block';
+                    displayQuestion();
+                })
+                .catch(error => {
+                    loadingIndicator.style.display = 'none';
+                    showError(`Failed to load questions: ${error.message}`);
+                    console.error('Error loading CSV:', error);
+                });
+        }
+
+        // Parse CSV data
+        function parseCsv(csvText) {
+            // Parse CSV with proper handling of quoted fields
+            const rows = parseCsvText(csvText);
+            if (rows.length < 2) {
+                showError('Invalid CSV format - not enough rows');
+                return;
+            }
+
+            const headers = rows[0].map(header => header.trim());
+            quizState.questions = [];
+
+            for (let i = 1; i < rows.length; i++) {
+                const values = rows[i];
+                if (values.length < 15) continue;
+
+                const question = {
+                    text: values[0].trim(),
+                    type: values[1].trim().toLowerCase(),
+                    options: [],
+                    correctAnswers: [],
+                    overallExplanation: values[18] ? values[18].trim() : '',
+                    domain: values[19] ? values[19].trim() : ''
+                };
+
+                // Parse correct answers (convert to zero-indexed)
+                const correctAnswers = values[17].split(',').map(num => parseInt(num.trim()) - 1);
+                question.correctAnswers = correctAnswers.filter(num => !isNaN(num) && num >= 0);
+
+                // Parse answer options and explanations
+                for (let j = 0; j < 6; j++) {
+                    const optionIndex = j + 2;
+                    const explanationIndex = optionIndex + 6;
+
+                    if (values[optionIndex] && values[optionIndex].trim() !== '') {
+                        question.options.push({
+                            text: values[optionIndex].trim(),
+                            explanation: values[explanationIndex] ? values[explanationIndex].trim() : ''
+                        });
+                    }
+                }
+
+                quizState.questions.push(question);
+            }
+
+            if (quizState.questions.length === 0) {
+                showError('No valid questions found in the CSV file');
+                return;
+            }
+
+            // Initialize user answers array
+            quizState.userAnswers = new Array(quizState.questions.length).fill(null);
+        }
+
+        // Proper CSV parsing with quoted fields
+        function parseCsvText(csvText) {
+            const rows = [];
+            let currentRow = [];
+            let currentField = '';
+            let inQuotes = false;
+            let escapeNext = false;
+
+            for (let i = 0; i < csvText.length; i++) {
+                const char = csvText[i];
+
+                if (escapeNext) {
+                    currentField += char;
+                    escapeNext = false;
+                    continue;
+                }
+
+                if (char === '\\') {
+                    escapeNext = true;
+                    continue;
+                }
+
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                    continue;
+                }
+
+                if (char === ',' && !inQuotes) {
+                    currentRow.push(currentField);
+                    currentField = '';
+                    continue;
+                }
+
+                if (char === '\n' && !inQuotes) {
+                    currentRow.push(currentField);
+                    rows.push(currentRow);
+                    currentRow = [];
+                    currentField = '';
+                    continue;
+                }
+
+                if (char === '\r') {
+                    continue;
+                }
+
+                currentField += char;
+            }
+
+            // Add the last field and row
+            if (currentField !== '' || inQuotes) {
+                currentRow.push(currentField);
+            }
+            if (currentRow.length > 0) {
+                rows.push(currentRow);
+            }
+
+            return rows;
+        }
+
+        // Display current question
+        function displayQuestion() {
+            const question = quizState.questions[quizState.currentQuestionIndex];
+
+            // Update progress
+            progressText.textContent = `Question: ${quizState.currentQuestionIndex + 1}/${quizState.questions.length}`;
+            domainDisplay.textContent = `${question.domain || 'General'}`;
+
+            // Set question text
+            questionText.textContent = question.text;
+
+            // Clear previous options
+            optionsContainer.innerHTML = '';
+
+            // Create new options
+            question.options.forEach((option, index) => {
+                const optionId = `option${index + 1}`;
+
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+
+                const isSelected = Array.isArray(quizState.userAnswers[quizState.currentQuestionIndex]) ?
+                    quizState.userAnswers[quizState.currentQuestionIndex].includes(index) :
+                    quizState.userAnswers[quizState.currentQuestionIndex] === index;
+
+                if (isSelected) {
+                    optionElement.classList.add('selected');
+                }
+
+                optionElement.innerHTML = `
+                    <input type="${question.type === 'multiple' ? 'checkbox' : 'radio'}" 
+                           name="answer" 
+                           id="${optionId}" 
+                           value="${index}"
+                           ${isSelected ? 'checked' : ''}>
+                    <label for="${optionId}">${option.text}</label>
+                `;
+
+                // Add click event to select the option
+                optionElement.addEventListener('click', () => {
+                    if (quizState.showExplanation) return;
+
+                    if (question.type === 'multiple') {
+                        const checkbox = optionElement.querySelector('input');
+                        checkbox.checked = !checkbox.checked;
+                        optionElement.classList.toggle('selected', checkbox.checked);
+                    } else {
+                        document.querySelectorAll('.option').forEach(opt => {
+                            opt.classList.remove('selected');
+                            opt.querySelector('input').checked = false;
+                        });
+                        optionElement.classList.add('selected');
+                        optionElement.querySelector('input').checked = true;
+                    }
+                });
+
+                optionsContainer.appendChild(optionElement);
+            });
+
+            // Reset explanation
+            explanationSection.style.display = 'none';
+            quizState.showExplanation = false;
+
+            // Update buttons
+            prevBtn.disabled = quizState.currentQuestionIndex === 0;
+            submitBtn.style.display = 'block';
+            nextBtn.style.display = 'none';
+        }
+
+        // Submit answer
+        function submitAnswer() {
+            const question = quizState.questions[quizState.currentQuestionIndex];
+            let selectedOptionIndex;
+
+            if (question.type === 'multiple') {
+                // For multiple choice, collect all checked options
+                const selectedOptions = [];
+                document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                    selectedOptions.push(parseInt(checkbox.value));
+                });
+                selectedOptionIndex = selectedOptions;
+            } else {
+                // For single choice, get the selected radio button
+                const selectedOption = document.querySelector('input[name="answer"]:checked');
+                selectedOptionIndex = selectedOption ? parseInt(selectedOption.value) : null;
+            }
+
+            // Store user answer
+            quizState.userAnswers[quizState.currentQuestionIndex] = selectedOptionIndex;
+
+            // Check if answer is correct
+            let isCorrect = false;
+
+            let selectedAnswers = []
+            if (!Array.isArray(selectedOptionIndex)) {
+                selectedAnswers.push(selectedOptionIndex)
+            } else {
+                selectedAnswers = selectedOptionIndex
+            }
+            isCorrect = selectedAnswers.sort().join(',') === question.correctAnswers.sort().join(',');
+
+            if (isCorrect) {
+                explanationSection.className = "explanation"
+                quizState.score++;
+            } else {
+                explanationSection.className = "explanation incorrect"
+            }
+
+            // Show explanation
+            overallExplanation.textContent = question.overallExplanation || 'No explanation provided.';
+            explanationSection.style.display = 'block';
+            quizState.showExplanation = true;
+
+            // Update buttons
+            submitBtn.style.display = 'none';
+            nextBtn.style.display = 'block';
+        }
+
+        // Navigation functions
+        function goToNextQuestion() {
+            if (quizState.currentQuestionIndex < quizState.questions.length - 1) {
+                quizState.currentQuestionIndex++;
+                displayQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function goToPreviousQuestion() {
+            if (quizState.currentQuestionIndex > 0) {
+                quizState.currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+
+        // Show results
+        function showResults() {
+            quizSection.style.display = 'none';
+            resultsSection.style.display = 'block';
+
+            // Calculate score
+            const percentage = Math.round((quizState.score / quizState.questions.length) * 100);
+            finalScore.textContent = quizState.score;
+            totalQuestions.textContent = quizState.questions.length;
+
+            // Determine pass/fail
+            passStatus.innerHTML = quizConfig.endText;
+            console.log(config)
+
+        }
+
+        // Restart quiz
+        function restartQuiz() {
+            quizState.currentQuestionIndex = 0;
+            quizState.score = 0;
+            quizState.userAnswers = new Array(quizState.questions.length).fill(null);
+            resultsSection.style.display = 'none';
+            quizSection.style.display = 'block';
+            displayQuestion();
+        }
+
+        // Show error message
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+
+        // Event Listeners
+        submitBtn.addEventListener('click', submitAnswer);
+        nextBtn.addEventListener('click', goToNextQuestion);
+        prevBtn.addEventListener('click', goToPreviousQuestion);
+        restartBtn.addEventListener('click', restartQuiz);
+
+        // Initialize quiz
+        loadQuizConfig();
+    </script>
+</body>
+
+</html>
